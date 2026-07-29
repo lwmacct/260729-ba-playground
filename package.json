@@ -1,6 +1,6 @@
 {
   "name": "@lwmacct/260729-ba-playground",
-  "version": "0.1.260729",
+  "version": "0.2.260729",
   "private": true,
   "description": "Browser automation playground and Context Baton workflow controller",
   "license": "Apache-2.0",
