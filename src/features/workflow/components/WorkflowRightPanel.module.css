@@ -1,0 +1,157 @@
+.tabs:global(.ant-tabs) {
+  height: 100%;
+  padding: 0 12px 12px;
+  background: var(--wb-card-bg);
+  border: 1px solid var(--wb-border);
+  border-radius: 6px;
+}
+
+.tabs :global(.ant-tabs-content-holder),
+.tabs :global(.ant-tabs-content),
+.tabs :global(.ant-tabs-tabpane) {
+  height: 100%;
+  min-height: 0;
+}
+
+.tabs :global(.ant-tabs-tabpane) {
+  overflow: auto;
+}
+
+.tabs :global(.ant-tabs-tabpane-active) {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs :global(.ant-tabs-tabpane-hidden) {
+  display: none;
+}
+
+.contextCard:global(.ant-card) {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  border-radius: 6px;
+}
+
+.contextCard:global(.ant-card > .ant-card-body) {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.error {
+  margin-bottom: 8px;
+}
+
+.tree {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 10px 12px;
+  overflow: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.55;
+  background: var(--wb-card-muted-bg);
+  border: 1px solid var(--wb-border-soft);
+  border-radius: 6px;
+}
+
+.treeView {
+  margin: 0;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.treeRow {
+  position: relative;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.treeChildren {
+  margin: 0;
+  padding: 0 0 0 2ch;
+}
+
+.treeLabel {
+  margin-right: 5px;
+  color: var(--wb-accent-hover);
+  font-weight: 600;
+}
+
+.treeValueString {
+  color: #116329;
+}
+
+.treeValueNumber {
+  color: #0b65c2;
+}
+
+.treeValueBoolean,
+.treeValueNull {
+  color: #b42318;
+}
+
+.treePunctuation {
+  color: var(--wb-text-muted);
+}
+
+.treeCount,
+.treeCollapsedContent {
+  margin-left: 5px;
+  color: var(--wb-text-muted);
+  font-size: 11px;
+}
+
+.treeToggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 20px;
+  padding: 0;
+  color: var(--wb-text-muted);
+  cursor: pointer;
+  user-select: none;
+  background: transparent;
+  border: 0;
+}
+
+.textarea:global(.ant-input) {
+  flex: 1 1 auto;
+  min-height: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.55;
+  resize: none;
+}
+
+@media (max-width: 1279px) and (min-width: 992px) {
+  .tabs:global(.ant-tabs) {
+    min-height: 520px;
+  }
+}
+
+@media (max-width: 991px) {
+  .tabs:global(.ant-tabs) {
+    height: 560px;
+  }
+
+  .textarea:global(.ant-input),
+  .tree {
+    font-size: 11px;
+  }
+}

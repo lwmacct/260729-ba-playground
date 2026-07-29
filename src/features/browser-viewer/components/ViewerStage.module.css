@@ -1,0 +1,32 @@
+.stage {
+  display: block;
+  flex: 1;
+  min-height: 240px;
+  overscroll-behavior: contain;
+  overflow: hidden;
+  padding: 0;
+  background: var(--workflow-canvas-bg);
+  cursor: crosshair;
+  user-select: none;
+  touch-action: none;
+}
+
+.scroller {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.image {
+  display: block;
+  flex: 0 0 auto;
+  min-width: 0;
+  min-height: 0;
+  object-fit: contain;
+  pointer-events: none;
+}

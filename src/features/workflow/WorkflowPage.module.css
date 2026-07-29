@@ -1,0 +1,45 @@
+.page,
+.pageContent,
+.form {
+  height: 100%;
+  min-height: 0;
+}
+
+.stack:global(.ant-space) {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  width: 100%;
+}
+
+.stack > :global(.ant-space-item:last-child) {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.workspaceGrid {
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 0;
+}
+
+.workspacePanel {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+}
+
+@media (max-width: 991px) {
+  .workspaceGrid {
+    height: auto;
+  }
+
+  .workspacePanel {
+    overflow: visible;
+  }
+
+  .pendingPanel {
+    min-height: 560px;
+  }
+}

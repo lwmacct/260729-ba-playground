@@ -1,0 +1,101 @@
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 32px;
+  min-width: 0;
+}
+
+.button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+}
+
+.iconButton {
+  width: 32px;
+}
+
+.infoTooltip {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.clipboardPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 360px;
+}
+
+.clipboardActions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.clipboardActions :global(.ant-btn) {
+  width: 100%;
+}
+
+.popoverPanel {
+  width: 340px;
+}
+
+.popoverForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.settingsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settingsSection + .settingsSection {
+  padding-top: 12px;
+  border-top: 1px solid var(--wb-border);
+}
+
+.settingsSectionTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.popoverActions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.popoverActions :global(.ant-btn) {
+  width: 100%;
+}
+
+.controlsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.controlsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0;
+}
+
+.scaleControl {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 92px;
+  align-items: center;
+  gap: 12px;
+}

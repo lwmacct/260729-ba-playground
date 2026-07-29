@@ -1,0 +1,1 @@
+export { AdsPowerPage } from "./AdsPowerPage";

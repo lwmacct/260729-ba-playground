@@ -1,0 +1,7 @@
+:root {
+  --workflow-canvas-bg: #f7f8fb;
+}
+
+:root[data-workbench-theme="dark"] {
+  --workflow-canvas-bg: #181818;
+}

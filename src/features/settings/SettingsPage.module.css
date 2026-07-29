@@ -1,0 +1,123 @@
+.page {
+  width: min(100%, 1204px);
+  margin-inline: auto;
+}
+
+.tabs:global(.ant-tabs) {
+  width: 100%;
+  min-height: 520px;
+  padding: 12px;
+  background: var(--wb-card-bg);
+  border: 1px solid var(--wb-border);
+  border-radius: 6px;
+}
+
+.tabs:global(.ant-tabs > .ant-tabs-content-holder) {
+  min-width: 0;
+}
+
+.tabs :global(.ant-tabs-tabpane) {
+  height: 100%;
+}
+
+.panel {
+  min-width: 0;
+  padding: 16px;
+  background: var(--wb-card-muted-bg);
+  border: 1px solid var(--wb-border);
+  border-radius: 6px;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.panelHint:global(.ant-typography) {
+  margin: 4px 0 0;
+}
+
+.layoutItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px;
+  background: var(--wb-card-bg);
+  border: 1px solid var(--wb-border);
+  border-radius: 6px;
+}
+
+.layoutItemMain {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  gap: 4px;
+}
+
+.workflowGrid {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.32fr) minmax(420px, 1fr);
+  gap: 16px;
+  min-height: 460px;
+}
+
+.workflowList {
+  overflow: auto;
+}
+
+.workflowItem {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  padding: 10px 12px;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--wb-border);
+  border-radius: 6px;
+}
+
+.workflowItem > span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.workflowItem:hover,
+.workflowItemSelected {
+  background: var(--wb-accent-softer);
+  border-color: var(--wb-accent);
+}
+
+.form:global(.ant-form) {
+  width: 100%;
+}
+
+.twoColumn {
+  display: grid;
+  grid-template-columns: minmax(360px, 0.55fr) minmax(260px, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 991px) {
+  .tabs:global(.ant-tabs) {
+    min-height: 0;
+  }
+
+  .tabs:global(.ant-tabs-left > .ant-tabs-nav) {
+    width: 100%;
+  }
+
+  .workflowGrid,
+  .twoColumn {
+    grid-template-columns: 1fr;
+  }
+}

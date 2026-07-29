@@ -1,0 +1,119 @@
+.page {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.pageContent {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+}
+
+.pageContent > :last-child {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.profilesPanel,
+.viewerPanel {
+  min-width: 0;
+  min-height: 0;
+}
+
+.profilesPanel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.profilesCard {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  padding: 12px;
+  overflow: hidden;
+  background: var(--wb-card-bg);
+  border: 1px solid var(--wb-border);
+  border-radius: 6px;
+}
+
+.profilesStack:global(.ant-space) {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.profilesStack > :global(.ant-space-item:last-child) {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tableScroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.tableScroll :global(.ant-table-wrapper),
+.tableScroll :global(.ant-spin-nested-loading),
+.tableScroll :global(.ant-spin-container),
+.tableScroll :global(.ant-table),
+.tableScroll :global(.ant-table-container) {
+  height: 100%;
+}
+
+.tableScroll :global(.ant-table-body) {
+  min-height: 0;
+}
+
+.profileTable :global(.ant-table-thead > tr > th),
+.profileTable :global(.ant-table-tbody > tr > td) {
+  white-space: nowrap;
+}
+
+.viewerPanel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--wb-card-bg);
+  border: 1px solid var(--wb-border);
+  border-radius: 6px;
+}
+
+.viewerPanel [data-embedded] {
+  flex: 1 1 auto;
+  height: auto;
+}
+
+.jsonEditor:global(.ant-input) {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+@media (max-width: 991px) {
+  .page,
+  .pageContent {
+    height: auto;
+  }
+
+  .viewerPanel {
+    min-height: 520px;
+  }
+}

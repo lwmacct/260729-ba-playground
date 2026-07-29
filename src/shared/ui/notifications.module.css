@@ -1,0 +1,19 @@
+.description {
+  max-width: 520px;
+  margin-bottom: 10px;
+}
+
+.description[data-wrap="true"] {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.description[data-wrap="false"] {
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}

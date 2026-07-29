@@ -1,0 +1,109 @@
+.bar {
+  flex: 0 0 auto;
+  min-width: 0;
+  padding: 4px 8px 0;
+  background: var(--wb-card-muted-bg);
+  border-bottom: 1px solid var(--wb-border);
+}
+
+.tabs {
+  min-width: 0;
+}
+
+.tabs:global(.ant-tabs-top > .ant-tabs-nav) {
+  height: 34px;
+  min-height: 34px;
+  margin: 0;
+}
+
+.tabs:global(.ant-tabs-top > .ant-tabs-nav .ant-tabs-nav-wrap),
+.tabs:global(.ant-tabs-top > .ant-tabs-nav .ant-tabs-nav-list),
+.tabs:global(.ant-tabs-top > .ant-tabs-nav .ant-tabs-nav-operations),
+.tabs:global(.ant-tabs-top > .ant-tabs-nav .ant-tabs-extra-content) {
+  height: 32px;
+  min-height: 32px;
+}
+
+.tabs:global(.ant-tabs-top > .ant-tabs-nav .ant-tabs-nav-operations) {
+  align-self: center;
+}
+
+.tabs:global(.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab) {
+  max-width: 180px;
+  min-width: 88px;
+  box-sizing: border-box;
+}
+
+.tabs:global(.ant-tabs-card > .ant-tabs-nav .ant-tabs-nav-more) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  min-height: 32px;
+  padding: 0;
+  color: var(--wb-text-muted);
+  border-radius: 4px;
+}
+
+.tabs:global(.ant-tabs-card > .ant-tabs-nav .ant-tabs-nav-more:hover),
+.tabs:global(.ant-tabs-card > .ant-tabs-nav .ant-tabs-nav-more:focus-visible),
+.tabs:global(.ant-tabs-card > .ant-tabs-nav .ant-tabs-nav-more[aria-expanded="true"]) {
+  color: var(--wb-text);
+  background: var(--wb-card-bg);
+}
+
+.tabs:global(.ant-tabs-card > .ant-tabs-nav .ant-tabs-nav-more::after) {
+  display: none;
+}
+
+.tabLabel {
+  display: block;
+  max-width: 128px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.extra {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 32px;
+  min-width: 0;
+}
+
+.iconButton,
+.copyButton {
+  width: 28px;
+}
+
+.createPanel {
+  width: 320px;
+}
+
+.preview {
+  display: grid;
+  gap: 8px;
+  width: min(420px, calc(100vw - 32px));
+}
+
+.previewRow {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.previewLabel,
+.previewValue {
+  min-width: 0;
+}
+
+.previewValue {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
