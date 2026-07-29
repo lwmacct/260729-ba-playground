@@ -1,5 +1,7 @@
 # Browser Automation Playground
 
+`BA` 是 Browser Automation（浏览器自动化）的缩写。
+
 `@lwmacct/260729-ba-playground` 是独立的浏览器自动化与 workflow Web 应用。它提供
 Context Baton workflow controller、AdsPower 管理和浏览器 viewer，并直接调用远端
 workflow executor API。
