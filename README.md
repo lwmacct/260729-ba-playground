@@ -67,3 +67,6 @@ pnpm build
 ```
 
 `pnpm build` 生成可独立部署的 `dist/`。也可以使用仓库 Dockerfile 构建静态站点镜像。
+
+AdsPower headless 主机的 CJK 字体与 SunBrowser 内核准备说明见
+[`docs/adspower-fonts.md`](docs/adspower-fonts.md)。
