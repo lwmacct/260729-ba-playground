@@ -14,7 +14,7 @@ test("derives plan and workflow status from Baton", () => {
   let baton = createBaton({ workflowId: "openai" });
   baton = applyBatonCommand(baton, {
     type: "entry.add",
-    entry: createBatonEntry({ id: "prompt", uses: "send-chat-prompt" }),
+    entry: createBatonEntry({ id: "prompt", uses: "openai/send-chat-prompt" }),
   });
   baton = applyBatonCommand(baton, {
     type: "execution.start",
@@ -22,7 +22,7 @@ test("derives plan and workflow status from Baton", () => {
   });
   assert.deepEqual(createPlanRunStatusByKey({
     baton,
-    planItems: [{ key: "prompt", name: "send-chat-prompt" }],
+    planItems: [{ key: "prompt", name: "openai/send-chat-prompt" }],
   }), { prompt: "running" });
   assert.equal(deriveWorkflowStatusFromBaton(baton), "running");
 });

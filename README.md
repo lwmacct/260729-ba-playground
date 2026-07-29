@@ -7,9 +7,9 @@ workflow executor API。
 ## 架构边界
 
 - `@lwmacct/260729-ba-context-baton` 提供 Baton v1 协议、schema、reducer 和引用解析。
-- `@lwmacct/260729-ba-framework` 提供通用 controller、executor HTTP client 和 manifest 类型。
+- `@lwmacct/260729-ba-framework` 提供通用 controller、executor HTTP client 和 Catalog Manifest 类型。
 - 本仓库保留 React、Ant Design、Dexie、表单状态、AdsPower 和浏览器 viewer 等应用层实现。
-- 具体 steps、Playwright runtime 和 Hono executor 位于产品 executor 仓库，不属于 Playground。
+- 具体 Step Packs、Playwright runtime 和通用 Executor 位于独立仓库，不属于 Playground。
 
 Context Baton 是步骤编排、输入/资源声明、执行状态和输出的唯一事实来源。Dexie 只保存
 Baton 记录 envelope，不维护另一套前端运行模型。
@@ -54,9 +54,9 @@ Context Baton v1 保存在 IndexedDB 数据库 `workflow-console-v2`：
 步骤引用使用稳定 entry ID。上游输入、资源或执行结果改变后，共享 reducer 会递归清空
 依赖它的下游旧结果，并拒绝制造前向引用或删除仍被引用的 entry。
 
-executor 的 `/api/manifest` 是版本化能力契约；Playground 当前读取 `/api/steps` 兼容
-接口，其中 `requiresBrowser` 从 manifest resource 声明派生。执行时的步骤状态始终写回
-Context Baton。
+executor 的 `/api/manifest` 是版本化 Step Catalog 契约，包含所有已加载 Packs 与合并后的
+Steps。`requiresBrowser` 从 Step resource 声明派生；浏览器可达性通过执行
+`browser/connect` Step 检查。执行状态始终写回 Context Baton。
 
 ## 验证与构建
 

@@ -72,16 +72,6 @@ export type WorkflowRunState = {
   finishedAt?: string;
 };
 
-export type BrowserEndpointCheckResponse = {
-  ok: true;
-  contextCount: number;
-  endpoint: string;
-  mode: "cdp" | "playwright";
-  pageCount: number;
-  reachable: true;
-  version: string;
-};
-
 export type WorkflowFormValues = {
   workflowId: string;
   browserEndpoint: string;

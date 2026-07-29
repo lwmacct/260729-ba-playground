@@ -14,8 +14,8 @@ test("finds Baton entries by stable id", () => {
   let baton = createBaton({ workflowId: "openai" });
   baton = applyBatonCommand(baton, {
     type: "entry.add",
-    entry: createBatonEntry({ id: "prompt", uses: "send-chat-prompt" }),
+    entry: createBatonEntry({ id: "prompt", uses: "openai/send-chat-prompt" }),
   });
   assert.equal(findContextEntryArrayIndex(baton, "prompt"), 0);
-  assert.equal(findContextEntry(baton, "prompt")?.uses, "send-chat-prompt");
+  assert.equal(findContextEntry(baton, "prompt")?.uses, "openai/send-chat-prompt");
 });
