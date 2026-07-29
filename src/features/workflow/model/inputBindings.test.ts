@@ -27,7 +27,7 @@ test("preserves JSON null and omits invalid editor drafts", () => {
     defaultPolicy: { onFailure: "stop", timeoutMs: 30_000 },
     limits: { minTimeoutMs: 1_000, maxTimeoutMs: 300_000 },
     inputHints: [jsonHint],
-    name: "http/request",
+    name: "example/request",
     outputs: [],
     resources: [],
     tags: [],

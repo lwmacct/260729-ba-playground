@@ -46,9 +46,16 @@ Context Baton v1 保存在 IndexedDB 数据库 `workflow-console-v2`：
   "baton": {
     "kind": "context-baton",
     "version": 1,
-    "entries": []
+    "id": "baton-id",
+    "revision": 0,
+    "workflow": { "id": "example" },
+    "entries": [],
+    "createdAt": "2026-07-30T00:00:00.000Z",
+    "updatedAt": "2026-07-30T00:00:00.000Z"
   },
-  "meta": {}
+  "meta": {},
+  "created_at": "2026-07-30T00:00:00.000Z",
+  "updated_at": "2026-07-30T00:00:00.000Z"
 }
 ```
 
