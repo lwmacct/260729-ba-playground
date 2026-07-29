@@ -1,6 +1,6 @@
 {
   "name": "@lwmacct/260729-ba-playground",
-  "version": "0.2.260729",
+  "version": "0.3.260729",
   "private": true,
   "description": "Browser automation playground and Context Baton workflow controller",
   "license": "Apache-2.0",
@@ -29,7 +29,7 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@lwmacct/260627-antd-workbench": "^0.56.260718",
     "@lwmacct/260729-ba-context-baton": "^0.5.260729",
-    "@lwmacct/260729-ba-framework": "^0.2.260729",
+    "@lwmacct/260729-ba-framework": "^0.3.260729",
     "@tanstack/react-query": "^5.101.4",
     "antd": "^6.5.2",
     "dexie": "^4.4.4",

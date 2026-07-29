@@ -469,8 +469,6 @@ function StepMetadataTooltipContent({
     return <div>没有步骤元信息</div>;
   }
   const outputs = metadata.outputs ?? [];
-  const reads = metadata.reads ?? [];
-  const writes = metadata.writes ?? [];
   return (
     <div className={styles.metadataTooltip}>
       {metadata.description ? (
@@ -478,12 +476,6 @@ function StepMetadataTooltipContent({
           <div className={styles.metadataTooltipTitle}>说明</div>
           <Typography.Text>{metadata.description}</Typography.Text>
         </div>
-      ) : null}
-      {reads.length > 0 ? (
-        <StepMetadataPathList title="读取 Context" paths={reads} />
-      ) : null}
-      {writes.length > 0 ? (
-        <StepMetadataPathList title="写入 Context" paths={writes} />
       ) : null}
       {outputs.length > 0 ? (
         <div className={styles.metadataTooltipSection}>
@@ -500,29 +492,9 @@ function StepMetadataTooltipContent({
           ))}
         </div>
       ) : null}
-      {!metadata.description && reads.length === 0 && writes.length === 0 &&
-          outputs.length === 0 ? (
+      {!metadata.description && outputs.length === 0 ? (
         <div>没有更多元信息</div>
       ) : null}
-    </div>
-  );
-}
-
-function StepMetadataPathList({
-  paths,
-  title,
-}: {
-  paths: readonly string[];
-  title: string;
-}) {
-  return (
-    <div className={styles.metadataTooltipSection}>
-      <div className={styles.metadataTooltipTitle}>{title}</div>
-      {paths.map((path) => (
-        <Typography.Text key={path} code>
-          {path}
-        </Typography.Text>
-      ))}
     </div>
   );
 }

@@ -47,21 +47,14 @@ export type WorkflowStepInputHint = StepMetadata["inputHints"][number];
 export type WorkflowStepDetails = {
   name: WorkflowStepName;
   policy?: WorkflowStepPolicy;
-  tags?: string[];
+  tags?: readonly string[];
   type: WorkflowStepType;
   title: string;
   description?: string;
 };
 
 export type WorkflowStepMetadata = Omit<StepMetadata, "name"> &
-  WorkflowStepDetails & {
-  requiresBrowser: boolean;
-};
-
-export type WorkflowStepsResponse = {
-  ok: true;
-  steps: WorkflowStepMetadata[];
-};
+  WorkflowStepDetails;
 
 export type WorkflowRunStatus = "idle" | "stopping" | BatonStatus;
 

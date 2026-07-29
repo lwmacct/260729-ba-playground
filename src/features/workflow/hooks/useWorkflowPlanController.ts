@@ -77,7 +77,9 @@ export function useWorkflowPlanController(options: {
         uses: step,
         input,
         policy: metadata?.defaultPolicy,
-        ...(metadata?.requiresBrowser
+        ...(metadata?.resources.some(
+          (resource) => resource.name === "browser" && resource.required,
+        )
           ? {
               resources: {
                 browser: {

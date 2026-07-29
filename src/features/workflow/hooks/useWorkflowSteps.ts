@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
-import { fetchWorkflowSteps } from "../api/workflowApi";
+import { fetchWorkflowManifest } from "../api/workflowApi";
 import type { WorkflowStepMetadata, WorkflowStepType } from "../model/types";
 
 const EMPTY_WORKFLOW_STEPS: WorkflowStepMetadata[] = [];
@@ -14,7 +14,7 @@ export function useWorkflowSteps(options: {
 }) {
   const stepsQuery = useQuery({
     queryKey: ["workflow-steps", options.executorToken, options.baseUrl],
-    queryFn: () => fetchWorkflowSteps(options.executorToken, options.baseUrl),
+    queryFn: () => fetchWorkflowManifest(options.executorToken, options.baseUrl),
   });
 
   const availableSteps = stepsQuery.data?.steps ?? EMPTY_WORKFLOW_STEPS;

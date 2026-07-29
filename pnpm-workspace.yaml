@@ -1,2 +1,4 @@
+enableGlobalVirtualStore: false
+
 allowBuilds:
   esbuild: true

@@ -3,10 +3,7 @@ import type {
   StepInvocationResponse,
 } from "@lwmacct/260729-ba-context-baton";
 import { createExecutorClient } from "@lwmacct/260729-ba-framework/client";
-import type {
-  BrowserEndpointCheckResponse,
-  WorkflowStepsResponse,
-} from "../model/types";
+import type { BrowserEndpointCheckResponse } from "../model/types";
 import { normalizeWorkflowExecutorBaseUrl } from "../model/executorSettings";
 
 async function readResponseBody(response: Response) {
@@ -52,14 +49,14 @@ export async function fetchWorkflowHealth(
   }).health();
 }
 
-export async function fetchWorkflowSteps(
+export async function fetchWorkflowManifest(
   executorToken: string,
   executorBaseUrl: string,
 ) {
-  return await createExecutorClient({
+  return createExecutorClient({
     baseUrl: normalizeWorkflowExecutorBaseUrl(executorBaseUrl),
     token: executorToken,
-  }).steps() as WorkflowStepsResponse;
+  }).manifest();
 }
 
 export async function executeWorkflowStep(
