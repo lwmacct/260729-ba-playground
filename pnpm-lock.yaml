@@ -27,8 +27,8 @@ importers:
         specifier: ^0.5.260729
         version: 0.5.260729
       '@lwmacct/260729-ba-framework':
-        specifier: ^0.5.260729
-        version: 0.5.260729
+        specifier: ^0.7.260730
+        version: 0.7.260730
       '@tanstack/react-query':
         specifier: ^5.101.4
         version: 5.101.4(react@19.2.8)
@@ -320,8 +320,8 @@ packages:
     resolution: {integrity: sha512-DGY8rQoGu5B/pHcdfGPFjGNUy7ZCQ0yegHEjvy7/nMA4pi8BI8D/vzZktLLoQmV8Vr8xI1IGBme0WqXZZJfX7Q==}
     engines: {node: '>=20'}
 
-  '@lwmacct/260729-ba-framework@0.5.260729':
-    resolution: {integrity: sha512-GA3rUtPKPrJTiCFA91fMD08Lop0fvE7KmnNxSUidmJ5RpP3BPYLq4f5N5SPgiIpHdI2LwqB5U6a03VejucEYJg==}
+  '@lwmacct/260729-ba-framework@0.7.260730':
+    resolution: {integrity: sha512-WCkbIM2aahil00AQ5tUaEO3mo+q1yL+P4NPyh9RR83jR3aK/fo7M2ZQFjsD8mz1/lwWOtmwATu9YGaL3iqqbCA==}
     engines: {node: '>=20'}
 
   '@napi-rs/wasm-runtime@1.2.0':
@@ -1293,7 +1293,7 @@ snapshots:
 
   '@lwmacct/260729-ba-context-baton@0.5.260729': {}
 
-  '@lwmacct/260729-ba-framework@0.5.260729':
+  '@lwmacct/260729-ba-framework@0.7.260730':
     dependencies:
       '@lwmacct/260729-ba-context-baton': 0.5.260729
 

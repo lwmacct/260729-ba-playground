@@ -75,6 +75,9 @@ export function isWorkflowStepInputBinding(
     return false;
   }
   const binding = value as WorkflowStepInputBinding;
+  if (binding.mode === "invalid_json") {
+    return typeof binding.draft === "string";
+  }
   if (binding.mode === "literal") {
     return binding.value === undefined || isWorkflowInputLiteralValue(binding.value);
   }
@@ -103,21 +106,53 @@ export function isPresentLiteralValue(value: unknown) {
     : value !== undefined && value !== null;
 }
 
-export function isPresentInputBinding(binding: WorkflowStepInputBinding | undefined) {
+export function isJsonInputHint(hint: WorkflowStepInputHint) {
+  return hint.type === "object" && hint.valueType === "unknown";
+}
+
+export function parseJsonInputLiteral(
+  value: string,
+  hint: WorkflowStepInputHint,
+): WorkflowInputLiteralValue {
+  const parsed = JSON.parse(value) as unknown;
+  if (
+    hint.valueType === "object" &&
+    (!parsed || typeof parsed !== "object" || Array.isArray(parsed))
+  ) {
+    throw new Error(`${hint.label || hint.name} must be a JSON object.`);
+  }
+  return toJsonValue(parsed);
+}
+
+export function isPresentInputBinding(
+  binding: WorkflowStepInputBinding | undefined,
+  hint?: WorkflowStepInputHint,
+) {
   return Boolean(binding) &&
-    (binding?.mode !== "literal" || isPresentLiteralValue(binding.value));
+    binding?.mode !== "invalid_json" &&
+    (binding?.mode !== "literal" ||
+      (binding.value === null && hint && isJsonInputHint(hint)) ||
+      isPresentLiteralValue(binding.value));
 }
 
-function normalizeLiteralValue(value: WorkflowInputLiteralValue | undefined) {
-  return typeof value === "string" ? value.trim() : value;
+function normalizeLiteralValue(
+  value: WorkflowInputLiteralValue | undefined,
+  hint?: WorkflowStepInputHint,
+) {
+  return typeof value === "string" && (!hint || !isJsonInputHint(hint))
+    ? value.trim()
+    : value;
 }
 
-export function compileInputBinding(binding: WorkflowStepInputBinding | undefined) {
-  if (!binding) {
+export function compileInputBinding(
+  binding: WorkflowStepInputBinding | undefined,
+  hint?: WorkflowStepInputHint,
+) {
+  if (!binding || binding.mode === "invalid_json") {
     return undefined;
   }
   return binding.mode === "literal"
-    ? normalizeLiteralValue(binding.value)
+    ? normalizeLiteralValue(binding.value, hint)
     : { $from: binding.source };
 }
 
@@ -209,9 +244,12 @@ export function compileStepInputBindings(
 ): JsonObject {
   return Object.fromEntries(
     metadata.inputHints
-      .map((hint) => [hint.name, input[hint.name]] as const)
-      .filter(([, binding]) => isPresentInputBinding(binding))
-      .map(([field, binding]) => [field, compileInputBinding(binding)] as const),
+      .map((hint) => [hint, input[hint.name]] as const)
+      .filter(([hint, binding]) => isPresentInputBinding(binding, hint))
+      .map(([hint, binding]) => [
+        hint.name,
+        compileInputBinding(binding, hint),
+      ] as const),
   ) as JsonObject;
 }
 

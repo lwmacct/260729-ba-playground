@@ -31,6 +31,10 @@ export type WorkflowStepInputBinding =
       value?: WorkflowInputLiteralValue;
     }
   | {
+      mode: "invalid_json";
+      draft: string;
+    }
+  | {
       mode: "step_output";
       source: WorkflowInputSource;
     };

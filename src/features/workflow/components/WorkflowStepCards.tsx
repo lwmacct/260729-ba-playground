@@ -40,6 +40,8 @@ import {
   createLiteralInputBinding,
   decodeInputSourceValue,
   encodeInputSourceValue,
+  isJsonInputHint,
+  parseJsonInputLiteral,
 } from "../model/inputBindings";
 import layoutStyles from "../../../shared/ui/layout.module.css";
 import styles from "./WorkflowStepCards.module.css";
@@ -161,7 +163,7 @@ function StepInputBindingControl({
     hint.valueType !== "array" &&
     hint.valueType !== "object";
   const hasSourceOptions = options.length > 0;
-  const manualSelected = !value || value.mode === "literal";
+  const manualSelected = value?.mode !== "step_output";
   const modeOptions = useMemo(() => [
     { label: "手动", value: "literal" },
     { label: "引用", value: "step_output" },
@@ -197,12 +199,9 @@ function StepInputBindingControl({
           return;
         }
         try {
-          const parsed = JSON.parse(trimmed) as unknown;
-          emitLiteral(parsed && typeof parsed === "object" && !Array.isArray(parsed)
-            ? parsed as WorkflowInputLiteralValue
-            : rawValue);
+          emitLiteral(parseJsonInputLiteral(trimmed, hint));
         } catch {
-          emitLiteral(rawValue);
+          emit({ mode: "invalid_json", draft: rawValue });
         }
         return;
       }
@@ -277,11 +276,17 @@ function StepInputBindingControl({
   }
 
   if (!hasSourceOptions) {
+    const controlValue = value?.mode === "invalid_json"
+      ? value.draft
+      : isJsonInputHint(hint) && value?.mode === "literal"
+        ? JSON.stringify(value.value, null, 2)
+        : literalValue;
     return (
       <StepInputControl
         hint={hint}
-        value={hint.type === "boolean" ? undefined : literalValue}
+        value={hint.type === "boolean" ? undefined : controlValue}
         checked={hint.type === "boolean" ? Boolean(literalValue) : undefined}
+        status={value?.mode === "invalid_json" ? "error" : undefined}
         onChange={handleLiteralControlChange}
       />
     );
@@ -305,8 +310,15 @@ function StepInputBindingControl({
       {manualSelected ? (
         <StepInputControl
           hint={hint}
-          value={hint.type === "boolean" ? undefined : literalValue}
+          value={hint.type === "boolean"
+            ? undefined
+            : value?.mode === "invalid_json"
+              ? value.draft
+              : isJsonInputHint(hint) && value?.mode === "literal"
+                ? JSON.stringify(value.value, null, 2)
+                : literalValue}
           checked={hint.type === "boolean" ? Boolean(literalValue) : undefined}
+          status={value?.mode === "invalid_json" ? "error" : undefined}
           onChange={handleLiteralControlChange}
         />
       ) : (
@@ -394,25 +406,28 @@ function StepInputField({
       </div>
       <Form.Item
         name={inputPath}
-        rules={
-          hint.required && !inputSource
-            ? [{
-              validator: (_, binding?: WorkflowStepInputBinding) => {
-                if (binding && binding.mode !== "literal") {
-                  return Promise.resolve();
-                }
-                const literalValue = binding?.mode === "literal" ? binding.value : undefined;
-                if (typeof literalValue === "string" && literalValue.trim().length > 0) {
-                  return Promise.resolve();
-                }
-                if (literalValue !== undefined && literalValue !== null && literalValue !== "") {
-                  return Promise.resolve();
-                }
-                return Promise.reject(new Error(`请输入${hint.label || hint.name}`));
-              },
-            }]
-            : undefined
-        }
+        rules={[{
+          validator: (_, binding?: WorkflowStepInputBinding) => {
+            if (binding?.mode === "invalid_json") {
+              return Promise.reject(new Error(`${hint.label || hint.name} JSON 格式无效`));
+            }
+            if (!hint.required || inputSource || binding?.mode === "step_output") {
+              return Promise.resolve();
+            }
+            const literalValue = binding?.mode === "literal" ? binding.value : undefined;
+            if (typeof literalValue === "string" && literalValue.trim().length > 0) {
+              return Promise.resolve();
+            }
+            if (
+              literalValue !== undefined &&
+              literalValue !== "" &&
+              (literalValue !== null || isJsonInputHint(hint))
+            ) {
+              return Promise.resolve();
+            }
+            return Promise.reject(new Error(`请输入${hint.label || hint.name}`));
+          },
+        }]}
       >
         <StepInputBindingControl
           hint={hint}
